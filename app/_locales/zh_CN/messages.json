@@ -255,7 +255,7 @@
     "message": "正在连接到Kovan测试网络"
   },
   "connectingToMainnet": {
-    "message": "正在连接到Conflux测试网"
+    "message": "正在连接到Conflux Oceanus"
   },
   "connectingToRopsten": {
     "message": "正在连接到Ropsten测试网络"

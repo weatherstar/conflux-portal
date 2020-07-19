@@ -298,7 +298,7 @@
     "message": "Connecting to Kovan Test Network"
   },
   "connectingToMainnet": {
-    "message": "Connecting to Conflux Test Network"
+    "message": "Connecting to Conflux Oceanus"
   },
   "connectingToRopsten": {
     "message": "Connecting to Ropsten Test Network"

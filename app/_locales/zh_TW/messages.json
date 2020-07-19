@@ -249,7 +249,7 @@
     "message": "連線到 Kovan 測試網路"
   },
   "connectingToMainnet": {
-    "message": "連線到主 Conflux 測試網路"
+    "message": "連線到主 Conflux Oceanus"
   },
   "connectingToRopsten": {
     "message": "連線到 Ropsten 測試網路"
