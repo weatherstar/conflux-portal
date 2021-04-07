@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.2 Wed Apr 07 2021
+
 - feat: use new rpc endpoint (#319)
 
 ## 0.6.1 Tue Mar 23 2021
