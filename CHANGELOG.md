@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.4 Tue May 11 2021
+
 - fix: use new phishing detect controller (#332)
 
 ## 0.6.3 Wed Apr 21 2021
