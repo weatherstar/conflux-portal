@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+- fix: use new phishing detect controller (#332)
+
 ## 0.6.3 Wed Apr 21 2021
 
 - fix: use new version of eth-phishing-detect (#325)
