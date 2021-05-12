@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.5 Wed May 12 2021
+
 - fix: internal contract get code (#335)
 
 ## 0.6.4 Tue May 11 2021
