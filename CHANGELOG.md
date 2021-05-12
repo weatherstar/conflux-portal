@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+- fix: internal contract get code (#335)
+
 ## 0.6.4 Tue May 11 2021
 
 - fix: use new phishing detect controller (#332)
