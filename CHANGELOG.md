@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.6 Tue May 18 2021
+
 - fix: block adding tokens without decimal() method (#338)
 
 ## 0.6.5 Wed May 12 2021
