@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+- fix: block adding tokens without decimal() method (#338)
+
 ## 0.6.5 Wed May 12 2021
 
 - fix: internal contract get code (#335)
