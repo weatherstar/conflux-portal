@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.8 Thu May 27 2021
+
 - feat: new domain for testnet faucet (#344)
 
 ## 0.6.7 Thu May 27 2021
