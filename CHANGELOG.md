@@ -2,6 +2,9 @@
 
 ## Current Develop Branch
 
+## 0.6.7 Thu May 27 2021
+- feat: @conflux-chain to @confluxnetwork (#341)
+
 ## 0.6.6 Tue May 18 2021
 
 - fix: block adding tokens without decimal() method (#338)
