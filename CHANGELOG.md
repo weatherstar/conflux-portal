@@ -1,6 +1,7 @@
 # Changelog
 
 ## Current Develop Branch
+- feat: @conflux-chain to @confluxnetwork (#341)
 
 ## 0.6.6 Tue May 18 2021
 
