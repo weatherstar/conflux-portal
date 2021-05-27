@@ -2,7 +2,10 @@
 
 ## Current Develop Branch
 
+- feat: new domain for testnet faucet (#344)
+
 ## 0.6.7 Thu May 27 2021
+
 - feat: @conflux-chain to @confluxnetwork (#341)
 
 ## 0.6.6 Tue May 18 2021
