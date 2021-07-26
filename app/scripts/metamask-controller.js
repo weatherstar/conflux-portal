@@ -1189,6 +1189,12 @@ export default class MetamaskController extends EventEmitter {
     // Remove account from the account tracker controller
     this.accountTracker.removeAccount([address])
 
+    const domains = this.permissionsController.getAuthedSites([address])
+    this.permissionsController.removePermissionsFor(domains)
+    this.preferencesController.removeLastSelectedAddressesFor(
+      Object.keys(domains)
+    )
+
     // Remove account from the keyring
     await this.keyringController.removeAccount(address)
     return address

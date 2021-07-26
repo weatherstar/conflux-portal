@@ -95,7 +95,9 @@
     "analytics-node/axios": "^0.21.1",
     "ganache-core/lodash": "^4.17.21",
     "pubnub/superagent-proxy": "^2.0.0",
-    "netmask": "^2.0.1"
+    "netmask": "^2.0.1",
+    "gaba/web3-provider-engine/ws": "5.2.3",
+    "rpc-cap/gaba/web3-provider-engine/ws": "5.2.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",

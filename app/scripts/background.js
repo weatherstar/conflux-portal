@@ -36,7 +36,6 @@ import {
 } from './lib/reportFailedTxToSentry'
 import getFirstPreferredLangCode from './lib/get-first-preferred-lang-code'
 import getObjStructure from './lib/getObjStructure'
-// import setupEnsIpfsResolver from './lib/ens-ipfs/setup'
 
 import {
   ENVIRONMENT_TYPE_POPUP,
@@ -263,12 +262,6 @@ function setupController(initState, initLangCode) {
       return openMetamaskTabsIDs
     },
   })
-
-  // setupEnsIpfsResolver({
-  //   getCurrentNetwork: controller.getCurrentNetwork,
-  //   getIpfsGateway: controller.preferencesController.getIpfsGateway.bind(controller.preferencesController),
-  //   provider: controller.provider,
-  // })
 
   // report failed transactions to Sentry
   controller.txController.on(`tx:status-update`, (txId, status) => {
