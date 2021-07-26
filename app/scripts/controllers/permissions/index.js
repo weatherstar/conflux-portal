@@ -439,6 +439,22 @@ export class PermissionsController {
       initState
     )
   }
+
+  getAuthedSites(accounts) {
+    const domains = this.permissions.getDomains()
+    const sites = {}
+    Object.keys(domains).forEach(domain => {
+      if (
+        accounts.includes(
+          domains[domain]?.permissions?.[0]?.caveats?.[0]?.value?.[0]
+        )
+      ) {
+        sites[domain] = domains[domain].permissions.map(p => p.parentCapability)
+      }
+    })
+
+    return sites
+  }
 }
 
 export function addInternalMethodPrefix(method) {
