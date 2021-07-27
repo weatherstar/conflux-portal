@@ -1,7 +1,7 @@
 {
   "name": "ConfluxPortal",
   "short_name": "ConfluxPortal",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "manifest_version": 2,
   "author": "https://confluxnetwork.org",
   "description": "__MSG_appDescription__",
@@ -32,7 +32,11 @@
   },
   "default_locale": "en",
   "background": {
-    "scripts": ["chromereload.js", "bg-libs.js", "background.js"],
+    "scripts": [
+      "chromereload.js",
+      "bg-libs.js",
+      "background.js"
+    ],
     "persistent": true
   },
   "browser_action": {
@@ -50,14 +54,24 @@
   },
   "content_scripts": [
     {
-      "matches": ["file://*/*", "http://*/*", "https://*/*"],
-      "js": ["portal-contentscript.js"],
+      "matches": [
+        "file://*/*",
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "portal-contentscript.js"
+      ],
       "run_at": "document_start",
       "all_frames": true
     },
     {
-      "matches": ["*://connect.trezor.io/*/popup.html"],
-      "js": ["vendor/trezor/content-script.js"]
+      "matches": [
+        "*://connect.trezor.io/*/popup.html"
+      ],
+      "js": [
+        "vendor/trezor/content-script.js"
+      ]
     }
   ],
   "permissions": [
@@ -69,7 +83,10 @@
     "activeTab",
     "notifications"
   ],
-  "web_accessible_resources": ["portal-inpage.js", "phishing.html"],
+  "web_accessible_resources": [
+    "portal-inpage.js",
+    "phishing.html"
+  ],
   "externally_connectable": {
     "matches": [
       "https://confluxscan.io/*",
@@ -78,6 +95,8 @@
       "https://portal-main.confluxrpc.com/*",
       "https://portal-test.confluxrpc.com/*"
     ],
-    "ids": ["*"]
+    "ids": [
+      "*"
+    ]
   }
 }
