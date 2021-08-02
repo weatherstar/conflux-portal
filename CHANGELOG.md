@@ -1,6 +1,8 @@
 # Changelog
 
 ## Current Develop Branch
+
+## 0.6.10 Mon Aug 02 2021
 - fix: stuck on ethgas req
 
 ## 0.6.9 Mon Jul 26 2021
