@@ -2,6 +2,9 @@
 
 ## Current Develop Branch
 
+## 0.6.10 Mon Aug 02 2021
+- fix: stuck on ethgas req
+
 ## 0.6.9 Mon Jul 26 2021
 - chore: remove ens-ipfs
 - fix: crash when remove a import account that already connected with dapp
