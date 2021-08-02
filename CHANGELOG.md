@@ -1,6 +1,7 @@
 # Changelog
 
 ## Current Develop Branch
+- fix: stuck on ethgas req
 
 ## 0.6.9 Mon Jul 26 2021
 - chore: remove ens-ipfs
