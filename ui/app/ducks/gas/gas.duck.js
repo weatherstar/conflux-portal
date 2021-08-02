@@ -209,26 +209,26 @@ export function fetchBasicGasEstimates() {
 }
 
 async function fetchExternalBasicGasEstimates(dispatch) {
-  const [response /* estimateGasDrip */] = await Promise.all([
-    fetch('https://ethgasstation.info/json/ethgasAPI.json', {
-      headers: {},
-      referrer: 'http://ethgasstation.info/json/',
-      referrerPolicy: 'no-referrer-when-downgrade',
-      body: null,
-      method: 'GET',
-      mode: 'cors',
-    }),
-    // (function() {
-    //   return new Promise((resolve, reject) => {
-    //     global.ethQuery.gasPrice((err, gasPrice) => {
-    //       if (err) {
-    //         reject(err)
-    //       }
-    //       resolve(gasPrice)
-    //     })
-    //   })
-    // })(),
-  ])
+  // const [response /* estimateGasDrip */] = await Promise.all([
+  //   fetch('https://ethgasstation.info/json/ethgasAPI.json', {
+  //     headers: {},
+  //     referrer: 'http://ethgasstation.info/json/',
+  //     referrerPolicy: 'no-referrer-when-downgrade',
+  //     body: null,
+  //     method: 'GET',
+  //     mode: 'cors',
+  //   }),
+  //   // (function() {
+  //   //   return new Promise((resolve, reject) => {
+  //   //     global.ethQuery.gasPrice((err, gasPrice) => {
+  //   //       if (err) {
+  //   //         reject(err)
+  //   //       }
+  //   //       resolve(gasPrice)
+  //   //     })
+  //   //   })
+  //   // })(),
+  // ])
 
   // const { result: estimateGasDrip } = await estimateGasResult.json()
   // TODO change this back later, use 1 drip as default gas price for now
@@ -237,12 +237,16 @@ async function fetchExternalBasicGasEstimates(dispatch) {
     new BigNumber('0x1', 16)
       .times(10)
       .div(1e9)
-      .toNumber() ||
-    new BigNumber('0x1', 16)
-      .times(10)
-      .div(1e9)
       .toNumber()
-  console.log('estimateGasGdripTimes10 = ', estimateGasGdripTimes10)
+
+  // const {
+  //   safeLow: safeLowTimes10,
+  //   // average: averageTimes10,
+  //   fast: fastTimes10,
+  //   fastest: fastestTimes10,
+  //   block_time: blockTime,
+  //   blockNum,
+  // } = await response.json()
 
   const {
     safeLow: safeLowTimes10,
@@ -251,7 +255,13 @@ async function fetchExternalBasicGasEstimates(dispatch) {
     fastest: fastestTimes10,
     block_time: blockTime,
     blockNum,
-  } = await response.json()
+  } = {
+    safeLow: estimateGasGdripTimes10,
+    fast: estimateGasGdripTimes10,
+    fastest: estimateGasGdripTimes10,
+    block_time: 0.5,
+    blockNum: 1,
+  }
 
   const [average, fast, fastest, safeLow] = [
     // averageTimes10,
@@ -309,26 +319,26 @@ export function fetchBasicGasAndTimeEstimates() {
 }
 
 async function fetchExternalBasicGasAndTimeEstimates(dispatch) {
-  const [response /* estimateGasDrip */] = await Promise.all([
-    fetch('https://ethgasstation.info/json/ethgasAPI.json', {
-      headers: {},
-      referrer: 'http://ethgasstation.info/json/',
-      referrerPolicy: 'no-referrer-when-downgrade',
-      body: null,
-      method: 'GET',
-      mode: 'cors',
-    }),
-    // (function() {
-    //   return new Promise((resolve, reject) => {
-    //     global.ethQuery.gasPrice((err, gasPrice) => {
-    //       if (err) {
-    //         reject(err)
-    //       }
-    //       resolve(gasPrice)
-    //     })
-    //   })
-    // })(),
-  ])
+  // const [response /* estimateGasDrip */] = await Promise.all([
+  //   fetch('https://ethgasstation.info/json/ethgasAPI.json', {
+  //     headers: {},
+  //     referrer: 'http://ethgasstation.info/json/',
+  //     referrerPolicy: 'no-referrer-when-downgrade',
+  //     body: null,
+  //     method: 'GET',
+  //     mode: 'cors',
+  //   }),
+  //   // (function() {
+  //   //   return new Promise((resolve, reject) => {
+  //   //     global.ethQuery.gasPrice((err, gasPrice) => {
+  //   //       if (err) {
+  //   //         reject(err)
+  //   //       }
+  //   //       resolve(gasPrice)
+  //   //     })
+  //   //   })
+  //   // })(),
+  // ])
 
   // const { result: estimateGasDrip } = await estimateGasResult.json()
   // TODO change this back later, use 1 drip as default gas price for now
@@ -342,7 +352,6 @@ async function fetchExternalBasicGasAndTimeEstimates(dispatch) {
       .times(10)
       .div(1e9)
       .toNumber()
-  console.log('estimateGasGdripTimes10 = ', estimateGasGdripTimes10)
 
   const {
     // average: averageTimes10,
@@ -356,7 +365,20 @@ async function fetchExternalBasicGasAndTimeEstimates(dispatch) {
     safeLow: safeLowTimes10,
     safeLowWait,
     speed,
-  } = await response.json()
+  } =
+    // await response.json()
+    {
+      avgWait: 1,
+      block_time: 0.5,
+      blockNum: 1,
+      fast: estimateGasGdripTimes10,
+      fastest: estimateGasGdripTimes10,
+      fastestWait: 0.1,
+      fastWait: 0.1,
+      safeLow: estimateGasGdripTimes10,
+      safeLowWait: 1,
+      speed: 0.1,
+    }
   const [average, fast, fastest, safeLow] = [
     // averageTimes10,
     estimateGasGdripTimes10,
