@@ -234,7 +234,7 @@ async function fetchExternalBasicGasEstimates(dispatch) {
   // TODO change this back later, use 1 drip as default gas price for now
   const estimateGasGdripTimes10 =
     // new BigNumber(estimateGasDrip, 16)
-    new BigNumber('0x1', 16)
+    new BigNumber('0x7530', 16)
       .times(10)
       .div(1e9)
       .toNumber()
@@ -344,11 +344,11 @@ async function fetchExternalBasicGasAndTimeEstimates(dispatch) {
   // TODO change this back later, use 1 drip as default gas price for now
   const estimateGasGdripTimes10 =
     // new BigNumber(estimateGasDrip, 16)
-    new BigNumber('0x1', 16)
+    new BigNumber('0x7530', 16)
       .times(10)
       .div(1e9)
       .toNumber() ||
-    new BigNumber('0x1', 16)
+    new BigNumber('0x7530', 16)
       .times(10)
       .div(1e9)
       .toNumber()
@@ -598,7 +598,6 @@ export function fetchGasEstimates(blockTime) {
 
 export function setCustomGasPriceForRetry(newPrice) {
   return dispatch => {
-    console.log('newPrice = ', newPrice)
     if (newPrice !== '0x0') {
       dispatch(setCustomGasPrice(newPrice))
     } else {
