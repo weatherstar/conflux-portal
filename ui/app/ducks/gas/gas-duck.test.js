@@ -416,12 +416,12 @@ describe('Gas Duck', function() {
         {
           type: SET_BASIC_GAS_ESTIMATE_DATA,
           value: {
-            average: 1e-9,
+            average: 0.00003,
             blockTime: 0.5,
             blockNum: 1,
-            fast: 1e-9,
-            fastest: 1e-9,
-            safeLow: 1e-9,
+            fast: 0.00003,
+            fastest: 0.00003,
+            safeLow: 0.00003,
           },
         },
       ])
@@ -520,12 +520,12 @@ describe('Gas Duck', function() {
         {
           type: SET_BASIC_GAS_ESTIMATE_DATA,
           value: {
-            average: 1e-9,
+            average: 0.00003,
             blockTime: 0.5,
             blockNum: 1,
-            fast: 1e-9,
-            fastest: 1e-9,
-            safeLow: 1e-9,
+            fast: 0.00003,
+            fastest: 0.00003,
+            safeLow: 0.00003,
           },
         },
       ])
@@ -577,15 +577,15 @@ describe('Gas Duck', function() {
         {
           type: SET_BASIC_GAS_ESTIMATE_DATA,
           value: {
-            average: 1e-9,
+            average: 0.00003,
             avgWait: 1,
             blockNum: 1,
             blockTime: 0.5,
-            fast: 1e-9,
+            fast: 0.00003,
             fastWait: 0.1,
-            fastest: 1e-9,
+            fastest: 0.00003,
             fastestWait: 0.1,
-            safeLow: 1e-9,
+            safeLow: 0.00003,
             safeLowWait: 1,
             speed: 0.1,
           },
@@ -698,15 +698,15 @@ describe('Gas Duck', function() {
         {
           type: SET_BASIC_GAS_ESTIMATE_DATA,
           value: {
-            average: 1e-9,
+            average: 0.00003,
             avgWait: 1,
             blockTime: 0.5,
             blockNum: 1,
-            fast: 1e-9,
-            fastest: 1e-9,
+            fast: 0.00003,
+            fastest: 0.00003,
             fastestWait: 0.1,
             fastWait: 0.1,
-            safeLow: 1e-9,
+            safeLow: 0.00003,
             safeLowWait: 1,
             speed: 0.1,
           },
