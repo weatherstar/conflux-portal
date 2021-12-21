@@ -2,6 +2,8 @@
 
 ## Current Develop Branch
 
+## 0.6.12 Tue Dec 21 2021
+
 ## 0.6.11 Sat Nov 06 2021
 
 ## 0.6.10 Mon Aug 02 2021
