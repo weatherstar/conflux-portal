@@ -303,8 +303,29 @@ class TransactionController extends EventEmitter {
       : '0x0'
     txMeta.gasPriceSpecified = Boolean(txParams.gasPrice)
     let gasPrice = txParams.gasPrice
-    if (!gasPrice) {
-      gasPrice = 30000
+    const isMainnet = txMeta.metamaskNetworkId === '1029'
+    if (isMainnet) {
+      const res = await fetch('https://main.confluxrpc.com/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: 1,
+          jsonrpc: '2.0',
+          method: 'gasstation_price',
+          params: [],
+        }),
+      }).then(res => res.json())
+      if (res && res.result && res.result.fastest) {
+        if (!gasPrice || res.result.fastest > gasPrice) {
+          gasPrice = res.result.fastest
+        }
+      } else {
+        gasPrice = 1000000000
+      }
+    } else {
+      if (!gasPrice) {
+        gasPrice = 1
+      }
     }
     txParams.gasPrice = ethUtil.addHexPrefix(gasPrice.toString(16))
     // set gasLimit

@@ -183,6 +183,7 @@ export function gasEstimatesLoadingFinished() {
 export function fetchBasicGasEstimates() {
   return async (dispatch, getState) => {
     const { basicPriceEstimatesLastRetrieved } = getState().gas
+    const isMainnet = getState().metamask.settings.network === 1029
     const timeLastRetrieved =
       basicPriceEstimatesLastRetrieved ||
       loadLocalStorageData('BASIC_PRICE_ESTIMATES_LAST_RETRIEVED') ||
@@ -193,11 +194,12 @@ export function fetchBasicGasEstimates() {
 
     let basicEstimates
     if (Date.now() - timeLastRetrieved > 75000) {
-      basicEstimates = await fetchExternalBasicGasEstimates(dispatch)
+      basicEstimates = await fetchExternalBasicGasEstimates(dispatch, isMainnet)
     } else {
       const cachedBasicEstimates = loadLocalStorageData('BASIC_PRICE_ESTIMATES')
       basicEstimates =
-        cachedBasicEstimates || (await fetchExternalBasicGasEstimates(dispatch))
+        cachedBasicEstimates ||
+        (await fetchExternalBasicGasEstimates(dispatch, isMainnet))
     }
 
     dispatch(setBasicGasEstimateData(basicEstimates))
@@ -208,36 +210,37 @@ export function fetchBasicGasEstimates() {
   }
 }
 
-async function fetchExternalBasicGasEstimates(dispatch) {
-  // const [response /* estimateGasDrip */] = await Promise.all([
-  //   fetch('https://ethgasstation.info/json/ethgasAPI.json', {
-  //     headers: {},
-  //     referrer: 'http://ethgasstation.info/json/',
-  //     referrerPolicy: 'no-referrer-when-downgrade',
-  //     body: null,
-  //     method: 'GET',
-  //     mode: 'cors',
-  //   }),
-  //   // (function() {
-  //   //   return new Promise((resolve, reject) => {
-  //   //     global.ethQuery.gasPrice((err, gasPrice) => {
-  //   //       if (err) {
-  //   //         reject(err)
-  //   //       }
-  //   //       resolve(gasPrice)
-  //   //     })
-  //   //   })
-  //   // })(),
-  // ])
+async function fetchExternalBasicGasEstimates(dispatch, isMainnet) {
+  let estimateGasGdripTimes10 = new BigNumber('0x3b9aca00', 16)
+    .times(10)
+    .div(1e9)
+    .toNumber()
 
-  // const { result: estimateGasDrip } = await estimateGasResult.json()
-  // TODO change this back later, use 1 drip as default gas price for now
-  const estimateGasGdripTimes10 =
-    // new BigNumber(estimateGasDrip, 16)
-    new BigNumber('0x7530', 16)
-      .times(10)
-      .div(1e9)
-      .toNumber()
+  if (isMainnet) {
+    const res = await fetch('https://main.confluxrpc.com/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: 1,
+        jsonrpc: '2.0',
+        method: 'gasstation_price',
+        params: [],
+      }),
+    }).then(res => res.json())
+    if (res && res.result && res.result.fastest) {
+      estimateGasGdripTimes10 = new BigNumber(res.result.fastest, 16)
+        .times(10)
+        .div(1e9)
+        .toNumber()
+    }
+  } else {
+    estimateGasGdripTimes10 =
+      // new BigNumber(estimateGasDrip, 16)
+      new BigNumber('0x1', 16)
+        .times(10)
+        .div(1e9)
+        .toNumber()
+  }
 
   // const {
   //   safeLow: safeLowTimes10,
@@ -291,6 +294,7 @@ async function fetchExternalBasicGasEstimates(dispatch) {
 export function fetchBasicGasAndTimeEstimates() {
   return async (dispatch, getState) => {
     const { basicPriceAndTimeEstimatesLastRetrieved } = getState().gas
+    const isMainnet = getState().metamask.settings.network === 1029
     const timeLastRetrieved =
       basicPriceAndTimeEstimatesLastRetrieved ||
       loadLocalStorageData('BASIC_GAS_AND_TIME_API_ESTIMATES_LAST_RETRIEVED') ||
@@ -301,14 +305,17 @@ export function fetchBasicGasAndTimeEstimates() {
 
     let basicEstimates
     if (Date.now() - timeLastRetrieved > 75000) {
-      basicEstimates = await fetchExternalBasicGasAndTimeEstimates(dispatch)
+      basicEstimates = await fetchExternalBasicGasAndTimeEstimates(
+        dispatch,
+        isMainnet
+      )
     } else {
       const cachedBasicEstimates = loadLocalStorageData(
         'BASIC_GAS_AND_TIME_API_ESTIMATES'
       )
       basicEstimates =
         cachedBasicEstimates ||
-        (await fetchExternalBasicGasAndTimeEstimates(dispatch))
+        (await fetchExternalBasicGasAndTimeEstimates(dispatch, isMainnet))
     }
 
     dispatch(setBasicGasEstimateData(basicEstimates))
@@ -318,40 +325,35 @@ export function fetchBasicGasAndTimeEstimates() {
   }
 }
 
-async function fetchExternalBasicGasAndTimeEstimates(dispatch) {
-  // const [response /* estimateGasDrip */] = await Promise.all([
-  //   fetch('https://ethgasstation.info/json/ethgasAPI.json', {
-  //     headers: {},
-  //     referrer: 'http://ethgasstation.info/json/',
-  //     referrerPolicy: 'no-referrer-when-downgrade',
-  //     body: null,
-  //     method: 'GET',
-  //     mode: 'cors',
-  //   }),
-  //   // (function() {
-  //   //   return new Promise((resolve, reject) => {
-  //   //     global.ethQuery.gasPrice((err, gasPrice) => {
-  //   //       if (err) {
-  //   //         reject(err)
-  //   //       }
-  //   //       resolve(gasPrice)
-  //   //     })
-  //   //   })
-  //   // })(),
-  // ])
+async function fetchExternalBasicGasAndTimeEstimates(dispatch, isMainnet) {
+  let estimateGasGdripTimes10 = new BigNumber('0x3b9aca00', 16)
+    .times(10)
+    .div(1e9)
+    .toNumber()
 
-  // const { result: estimateGasDrip } = await estimateGasResult.json()
-  // TODO change this back later, use 1 drip as default gas price for now
-  const estimateGasGdripTimes10 =
-    // new BigNumber(estimateGasDrip, 16)
-    new BigNumber('0x7530', 16)
-      .times(10)
-      .div(1e9)
-      .toNumber() ||
-    new BigNumber('0x7530', 16)
+  if (isMainnet) {
+    const res = await fetch('https://main.confluxrpc.com/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: 1,
+        jsonrpc: '2.0',
+        method: 'gasstation_price',
+        params: [],
+      }),
+    }).then(res => res.json())
+    if (res && res.result && res.result.fastest) {
+      estimateGasGdripTimes10 = new BigNumber(res.result.fastest, 16)
+        .times(10)
+        .div(1e9)
+        .toNumber()
+    }
+  } else {
+    estimateGasGdripTimes10 = new BigNumber('0x1', 16)
       .times(10)
       .div(1e9)
       .toNumber()
+  }
 
   const {
     // average: averageTimes10,
